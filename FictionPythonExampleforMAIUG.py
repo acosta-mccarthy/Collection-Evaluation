@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/python2.7
 #
-# Test being run to export shelf list to collection managers
+# Export shelf list to collection managers
 # Email Excel Spreadsheet to manager and supervisor 
 # Use XlsxWriter to create spreadsheet from SQL Query
-# 
-#
+# Use target variables to determine if collection size is above target
+# Send one of two emails depending on rowcount
 
 import psycopg2
 import xlsxwriter
@@ -26,7 +26,7 @@ emailhost = 'mail.greenwichlibrary.org'
 emailport = '25'
 
 try:
-    conn = psycopg2.connect("dbname='iii' user='sqlaccess' host='sierra-db' port='1032' password='novelist_15' sslmode='require'")
+    conn = psycopg2.connect("dbname='iii' user='xxxxxxx' host='sierra-db' port='1032' password='xxxxxx' sslmode='require'")
 except psycopg2.Error as e:
     print ("Unable to connect to database: " + str(e))
     
@@ -45,8 +45,8 @@ If you have any questions, please contact Eric McCarthy in Resources Management.
 emailmessage2 = '''Hi!
 
 Your collection is on or under target.  Currently the target is 23279 and there are {0} items in this collection.  Thanks!'''.format(target)
-emailfrom = 'emccarthy@greenwichlibrary.org'
-emailto = ['sschmidt@greenwichlibrary.org','emccarthy@greenwichlibrary.org','ksoboleva@greenwichlibrary.org']
+emailfrom = 'xxxxxxx@greenwichlibrary.org'
+emailto = ['xxxxxxxx@greenwichlibrary.org','xxxxxxx@greenwichlibrary.org','xxxxxxx@greenwichlibrary.org']
 conn.close()
 
 
